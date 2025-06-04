@@ -1,0 +1,807 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolveIt | Innovative Software Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <style>
+        .gradient-bg {
+            background: #1976D2;
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.03);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #1976D2;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .swiper-container {
+            padding: 40px 0;
+            overflow: hidden;
+        }
+        
+        .swiper-slide {
+            width: calc(100% / 3 - 20px) !important;
+            /*margin-right: 30px;*/
+            transition: all 0.3s ease;
+            opacity: 0.7;
+            transform: scale(0.9);
+        }
+        
+        .swiper-slide-active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .swiper-slide-next,
+        .swiper-slide-prev {
+            opacity: 0.8;
+        }
+        
+        .swiper-wrapper {
+            padding: auto;
+            
+        }
+        
+        .swiper-button-prev,
+        .swiper-button-next {
+            color: white;
+            background: rgba(255,255,255,0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .swiper-button-prev:after,
+        .swiper-button-next:after {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .swiper-pagination-bullet {
+            background: white;
+            opacity: 0.5;
+        }
+        
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .swiper-slide {
+                width: 60% !important;
+            }
+        }
+
+         @media (max-width: 480px) {
+            .swiper-slide {
+                width: 85% !important;
+            }
+        } 
+
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-bold text-xl">S</div>
+                        <span class="ml-3 text-xl font-bold text-gray-900">SolveIt</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-900 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="#services" class="nav-link text-gray-900 px-3 py-2 text-sm font-medium">Services</a>
+                    <a href="#solutions" class="nav-link text-gray-900 px-3 py-2 text-sm font-medium">Solutions</a>
+                    <a href="#about" class="nav-link text-gray-900 px-3 py-2 text-sm font-medium">About</a>
+                    <a href="#contact" class="nav-link text-gray-900 px-3 py-2 text-sm font-medium">Contact</a>
+                </div>
+                <div class="hidden md:flex items-center">
+                    <a href="#contact" class="ml-8 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white gradient-bg hover:shadow-md transition duration-300">
+                        Get Started
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Home</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Services</a>
+                <a href="#solutions" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Solutions</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">About</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Contact</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white gradient-bg text-center">Get Started</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navigation -->
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex items-center justify-between">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Innovative Software Solutions for Your Business</h1>
+                    <p class="text-xl mb-8 opacity-90">We build custom software that solves complex problems and drives business growth.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contact" class="bg-white text-[#1976D2] hover:bg-gray-100 px-6 py-3 rounded-lg text-lg font-semibold text-center transition duration-300 hover:shadow-lg">
+                            Get a Free Consultation
+                        </a>
+                        <a href="#solutions" class="border-2 border-white text-white hover:bg-white hover:bg-opacity-10 px-6 py-3 rounded-lg text-lg font-semibold text-center transition duration-300">
+                            Explore Solutions
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2282/2282188.png" alt="Software Development" class="w-3/4 animate-float">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section -->
+
+    <!-- Trusted By Section -->
+    <section class="bg-gray-50 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-gray-500 mb-8">Trusted by innovative companies worldwide</p>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-center">
+                <div class="flex justify-center">
+                    <img src="{% static 'img/techcrop.png' %}" alt="TechCorp" class="h-24 opacity-70 hover:opacity-100 transition duration-300">
+                </div>
+                <div class="flex justify-center">
+                    <img src="{% static 'img/innova.png' %}" alt="Innova" class="h-24 opacity-70 hover:opacity-100 transition duration-300">
+                </div>
+                <div class="flex justify-center">
+                    <img src="{% static 'img/globalsoft.png' %}" alt="GlobalSoft" class="h-24 opacity-70 hover:opacity-100 transition duration-300">
+                </div>
+                <div class="flex justify-center">
+                    <img src="{% static 'img/datasystems.png' %}" alt="DataSystems" class="h-24 opacity-70 hover:opacity-100 transition duration-300">
+                </div>
+                <div class="flex justify-center">
+                    <img src="{% static 'img/futuretech.png' %}" alt="FutureTech" class="h-24 opacity-70 hover:opacity-100 transition duration-300">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Trusted By Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">We offer comprehensive software solutions tailored to your business needs</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale transition duration-300">
+                    <div class="p-8">
+                        <div class="bg-[#1976D2] w-16 h-16 rounded-lg flex items-center justify-center text-white mb-6">
+                            <i class="fas fa-code text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Custom Software Development</h3>
+                        <p class="text-gray-600 mb-4">Tailored solutions designed specifically for your business requirements and workflows.</p>
+                        <a href="#" class="text-indigo-600 font-medium inline-flex items-center">
+                            Learn more <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale transition duration-300">
+                    <div class="p-8">
+                        <div class="gradient-bg w-16 h-16 rounded-lg flex items-center justify-center text-white mb-6">
+                            <i class="fas fa-mobile-alt text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Mobile App Development</h3>
+                        <p class="text-gray-600 mb-4">Cross-platform mobile applications that engage users and drive business growth.</p>
+                        <a href="#" class="text-indigo-600 font-medium inline-flex items-center">
+                            Learn more <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale transition duration-300">
+                    <div class="p-8">
+                        <div class="gradient-bg w-16 h-16 rounded-lg flex items-center justify-center text-white mb-6">
+                            <i class="fas fa-cloud text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Cloud Solutions</h3>
+                        <p class="text-gray-600 mb-4">Scalable cloud infrastructure and services to modernize your business operations.</p>
+                        <a href="#" class="text-indigo-600 font-medium inline-flex items-center">
+                            Learn more <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>  
+    <!-- Services Section -->
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Solutions</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Industry-specific software solutions to transform your business</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Solution 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale transition duration-300">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-[#E3F2FD] flex items-center justify-center p-6">
+                            <img src="https://cdn-icons-png.flaticon.com/128/15258/15258692.png" alt="Enterprise Solution" class="w-full max-w-xs">
+                        </div>
+                        <div class="md:w-2/3 p-8">
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">API Creation & Integrations</h3>
+                            <p class="text-gray-600 mb-4">Comprehensive API solutions to streamline your data communication, improve efficiency, and boost security.</p>
+                            <a href="#" class="text-indigo-600 font-medium inline-flex items-center">
+                                Explore solution <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Solution 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale transition duration-300">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-indigo-100 flex items-center justify-center p-6">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2936/2936886.png" alt="CRM Solution" class="w-full max-w-xs">
+                        </div>
+                        <div class="md:w-2/3 p-8">
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Customer Relationship Management</h3>
+                            <p class="text-gray-600 mb-4">Powerful CRM systems to manage customer interactions, improve satisfaction, and drive sales growth.</p>
+                            <a href="#" class="text-indigo-600 font-medium inline-flex items-center">
+                                Explore solution <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Solution 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale transition duration-300">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-indigo-100 flex items-center justify-center p-6">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2936/2936886.png" alt="Analytics Solution" class="w-full max-w-xs">
+                        </div>
+                        <div class="md:w-2/3 p-8">
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Business Intelligence & Analytics</h3>
+                            <p class="text-gray-600 mb-4">Advanced analytics platforms to turn your data into actionable insights and strategic decisions.</p>
+                            <a href="#" class="text-indigo-600 font-medium inline-flex items-center">
+                                Explore solution <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Solution 4 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale transition duration-300">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-indigo-100 flex items-center justify-center p-6">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2933/2933245.png" alt="E-commerce Solution" class="w-full max-w-xs">
+                        </div>
+                        <div class="md:w-2/3 p-8">
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">E-commerce Platforms</h3>
+                            <p class="text-gray-600 mb-4">Custom e-commerce solutions to enhance your online presence, increase conversions, and grow revenue.</p>
+                            <a href="#" class="text-indigo-600 font-medium inline-flex items-center">
+                                Explore solution <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#contact" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white gradient-bg hover:shadow-md transition duration-300">
+                    Request Custom Solution
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Solutions Section -->
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:flex items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Our Team" class="rounded-xl shadow-lg w-full">
+                </div>
+                <div class="lg:w-1/2 lg:pl-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">About SolveIt</h2>
+                    <p class="text-gray-600 mb-6">Founded in 2020, SolveIt is a software development company dedicated to creating innovative solutions that address real business challenges. Our team of experienced developers, designers, and strategists work collaboratively to deliver exceptional results.</p>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Our Approach</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="gradient-bg w-8 h-8 rounded-full flex items-center justify-center text-white">
+                                        <i class="fas fa-check text-sm"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-gray-700">Client-focused development process</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="gradient-bg w-8 h-8 rounded-full flex items-center justify-center text-white">
+                                        <i class="fas fa-check text-sm"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-gray-700">Agile methodology for rapid delivery</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="gradient-bg w-8 h-8 rounded-full flex items-center justify-center text-white">
+                                        <i class="fas fa-check text-sm"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-gray-700">Cutting-edge technology stack</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="gradient-bg w-8 h-8 rounded-full flex items-center justify-center text-white">
+                                        <i class="fas fa-check text-sm"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-gray-700">Continuous support and maintenance</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap -mx-2">
+                        <div class="w-full sm:w-1/2 px-2 mb-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-bold text-gray-900 mb-2">15+</h4>
+                                <p class="text-gray-600">Successful Projects</p>
+                            </div>
+                        </div>
+                        <div class="w-full sm:w-1/2 px-2 mb-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-bold text-gray-900 mb-2">10+</h4>
+                                <p class="text-gray-600">Satisfied Clients</p>
+                            </div>
+                        </div>
+                        <div class="w-full sm:w-1/2 px-2 mb-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-bold text-gray-900 mb-2">10+</h4>
+                                <p class="text-gray-600">Expert Team Members</p>
+                            </div>
+                        </div>
+                        <div class="w-full sm:w-1/2 px-2">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-bold text-gray-900 mb-2">3</h4>
+                                <p class="text-gray-600">Years of Experience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section Ends -->
+    
+
+    <!-- Contact Section Starts-->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:flex">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Get In Touch</h2>
+                    <p class="text-gray-600 mb-8">Ready to transform your business with custom software solutions? Contact us today to discuss your project requirements and get a free consultation.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="bg-[#1976D2] w-10 h-10 rounded-full flex items-center justify-center text-white">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-900">Our Office</h4>
+                                <p class="text-gray-600">123 Tech Street, Silicon Valley, CA 94000</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="gradient-bg w-10 h-10 rounded-full flex items-center justify-center text-white">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-900">Email Us</h4>
+                                <p class="text-gray-600"><a href="mailto:">hello@solveit.com</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="gradient-bg w-10 h-10 rounded-full flex items-center justify-center text-white">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-900">Call Us</h4>
+                                <p class="text-gray-600"><a href="tel:">+1 (555) 123-4567</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Follow Us</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-[#E3F2FD] flex items-center justify-center text-[#1976D2] hover:bg-[#1976D2] hover:text-white transition duration-300">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-100 transition duration-300">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-100 transition duration-300">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-100 transition duration-300">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-white shadow-xl rounded-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
+                        <form>
+                            <div class="mb-6">
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="John Doe">
+                            </div>
+                            <div class="mb-6">
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="john@example.com">
+                            </div>
+                            <div class="mb-6">
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="+1 (555) 123-4567">
+                            </div>
+                            <div class="mb-6">
+                                <label for="service" class="block text-sm font-medium text-gray-700 mb-1">Service Interested In</label>
+                                <select id="service" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <option value="">Select a service</option>
+                                    <option value="custom-software">Custom Software Development</option>
+                                    <option value="mobile-apps">Mobile App Development</option>
+                                    <option value="cloud-solutions">Cloud Solutions</option>
+                                    <option value="enterprise">API Solutions</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Tell us about your project..."></textarea>
+                            </div>
+                            <div class="mb-6">
+                                <button type="submit" class="w-full gradient-bg text-white px-6 py-3 rounded-lg font-medium hover:shadow-md transition duration-300">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section Ends-->
+
+    <!-- Testimonials Starts-->
+    <section class="py-20 gradient-bg text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">What Our Clients Say</h2>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto">Don't just take our word for it - hear from some of our amazing clients</p>
+            </div>
+
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <!-- Testimonial 1 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-xl p-8 h-full">
+                            <div class="flex items-center mb-6">
+                                <img class="h-12 w-12 rounded-full" src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson">
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold">Sarah Johnson</h4>
+                                    <p class="text-indigo-200">CEO, TechCorp</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700">"SolveIt transformed our outdated systems into a modern, efficient platform."</p>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-xl p-8 h-full">
+                            <div class="flex items-center mb-6">
+                                <img class="h-12 w-12 rounded-full" src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen">
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold">Michael Chen</h4>
+                                    <p class="text-indigo-200">CTO, Innova</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700">"The custom CRM solution developed by SolveIt has revolutionized our sales process."</p>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-xl p-8 h-full">
+                            <div class="flex items-center mb-6">
+                                <img class="h-12 w-12 rounded-full" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily Rodriguez">
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold">Emily Rodriguez</h4>
+                                    <p class="text-indigo-200">Director, FutureTech</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700">"Working with SolveIt has been a game-changer for our e-commerce platform."</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev text-white"></div>
+                <div class="swiper-button-next text-white"></div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials Ends-->
+
+    <!-- Newsletter Starts-->
+    <section id="newsletter" class="py-16 bg-[#F5F5F5]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:flex items-center justify-between bg-white rounded-xl shadow-lg py-8 px-4">
+                <div class="lg:w-1/2 mb-6 lg:mb-0">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Subscribe to Our Newsletter</h3>
+                    <p class="text-gray-600">Get the latest updates, news and product offers</p>
+                </div>
+                <div class="lg:w-1/2">
+                    <form class="flex">
+                        <input type="email" placeholder="Enter your email" class="flex-grow px-4 py-3 rounded-l-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        <button type="submit" class="gradient-bg text-white px-3 py-3 rounded-r-lg font-medium hover:shadow-md transition duration-300">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Newsletter Ends-->
+
+    <!-- Footer Starts-->
+    <footer class="bg-[#111827] text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 grid-cols-2 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-bold text-xl">S</div>
+                        <span class="ml-3 text-xl font-bold">SolveIt</span>
+                    </div>
+                    <p class="text-gray-400">Innovative software solutions to transform your business and drive growth.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
+                        <li><a href="#solutions" class="text-gray-400 hover:text-white transition duration-300">Solutions</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Custom Software</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Mobile Apps</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Web Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Cloud Solutions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">UI/UX Design</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                            <span>123 Tech Street, Silicon Valley, CA 94000</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3"></i>
+                            <span>hello@solveit.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-3"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="md:flex items-center justify-between">
+                   <p class="text-gray-400 text-sm mb-4 md:mb-0">&copy; <span id="year"></span> SolveIt. All rights reserved.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Ends -->
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.classList.add('block');
+            } else {
+                menu.classList.remove('block');
+                menu.classList.add('hidden');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.remove('block');
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Form submission handling (example)
+        const contactForm = document.querySelector('#contact form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            });
+        }
+
+        // Newsletter form submission
+        const newsletterForm = document.querySelector('#newsletter form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const emailInput = this.querySelector('input[type="email"]');
+                if (emailInput.value) {
+                    alert('Thank you for subscribing to our newsletter!');
+                    emailInput.value = '';
+                }
+            });
+        }
+    
+
+        document.addEventListener('DOMContentLoaded', function() {       
+            const swiper = new Swiper('.swiper', {
+                loop: true,
+                slidesPerView: 'auto',
+                spaceBetween: 25,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false,
+                    reverseDirection: true,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 30
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 20
+                    },
+                    480: {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                        centeredSlides: true
+                    }
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
